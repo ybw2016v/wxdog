@@ -96,7 +96,14 @@ function uploaddog() {
   if (/https:\/\/mp.weixin.qq.com\/s\//.test(cdog)){
   // console.log({ i: doginfostr, c: cdog, t: ptime, r: rant, g: pogc })
   $.post("/api/create/", { i: doginfostr, c: cdog.replace("https://mp.weixin.qq.com/s/","") }, function (data, status) {
-    console.log(data)
+    if (data.r=='ok') {
+      var Htmldog4 = `<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>成功！</strong> ID: ${data.id}</div>`;
+      $('#innf').html(Htmldog4);
+    } else
+    {
+      var Htmldog3 = `<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>错误！</strong> ${data.r}</div>`;
+      $('#innf').html(Htmldog3);
+    }
   })
   } else {
     alert("格式错误")

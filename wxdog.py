@@ -24,7 +24,7 @@ parser.add_argument('i', type=str, help='访问token')
 # parser.add_argument('g', type=int, help='是否生成图片')
 parser.add_argument('y', type=int, help='页数')
 
-executor = ThreadPoolExecutor(1)
+executor = ThreadPoolExecutor(4)
 
 app = Flask(__name__)
 app.config.update(RESTFUL_JSON=dict(ensure_ascii=False))
