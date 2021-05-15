@@ -97,8 +97,9 @@ function uploaddog() {
   // console.log({ i: doginfostr, c: cdog, t: ptime, r: rant, g: pogc })
   $.post("/api/create/", { i: doginfostr, c: cdog.replace("https://mp.weixin.qq.com/s/","") }, function (data, status) {
     if (data.r=='ok') {
-      var Htmldog4 = `<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>成功！</strong> ID: ${data.id}</div>`;
+      var Htmldog4 = `<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>任务已提交！</strong> ID: ${data.id}</div>`;
       $('#innf').html(Htmldog4);
+      document.getElementById('ccc').value='';
     } else
     {
       var Htmldog3 = `<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>错误！</strong> ${data.r}</div>`;
