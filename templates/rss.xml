@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+    <channel>
+        <title>Wxdog</title>
+        <link>https://wxdog.neko.red/</link>
+        <description>微信转rss 纯手工打造</description>
+        <language>zh-cn</language>
+        <pubDate>{{ datedog }}</pubDate>
+        {% for item in items %}
+        <item>
+            <title><![CDATA[{{ item['title'] |safe  }}]]></title>
+            <link>{{ item['url'] }}</link>
+            <author>{{ item['author'] }}</author>
+            <pubDate>{{ item['pubtime'] }}</pubDate>
+            <description><![CDATA[{{ item['ptext'] |safe  }}]]></description>
+            <guid>{{ item['ak'] }}</guid>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>
