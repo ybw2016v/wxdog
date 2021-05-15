@@ -1,0 +1,8 @@
+requests
+base36
+SQLAlchemy
+flask-restful
+flask
+beautifulsoup4
+flask-redis
+

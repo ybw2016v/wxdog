@@ -1,0 +1,24 @@
+<rss version="2.0">
+<channel>
+<uuid>
+29587eb9-213d-44ec-8174-1ef638c69d6e</uuid>
+<title>
+中科院物理所</title>
+<link>https://iop.cas.cn/</link>
+<description>
+物理所科研动态和综合新闻；物理学前沿和科学传播。</description>
+<language>zh-cn</language>
+{% for item in items %}
+<item>
+<title><![CDATA[{{ item['title'] |safe  }}]]></title>
+<cover>https://my-statics-cdn.app.xinhuanet.com/uploadfile/xinhuahao/12bfb789-2f5e-481b-9afc-bf9c97d311e8.jpg</cover>
+<introduction><![CDATA[{{ item['desp'] |safe  }}]]></introduction>
+<link>{{ item['link'] }}</link>
+<description><![CDATA[{{ item['ptext'] |safe  }}]]></description>
+<pubDate>{{ item['pubtime'] }}</pubDate>
+<source><![CDATA[{{ item['author'] }}]]></source>
+<action>withdraw</action>
+</item>
+{% endfor %}
+</channel>
+</rss>
