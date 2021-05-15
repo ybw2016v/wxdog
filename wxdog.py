@@ -31,19 +31,6 @@ app.config.update(RESTFUL_JSON=dict(ensure_ascii=False))
 api = Api(app)
 
 class lsdogs(Resource):
-    def get(self):
-        c = request.args.get("c")
-        t = request.args.get("t")
-        try:
-            page=int(c) if (c is not None) else 0
-            sdl=Tdog.query.order_by(Tdog.pubtime.desc()).filter(Tdog.ak!=None).limit(10).offset(page*10)
-            nnu=Tdog.query.count()
-        except :
-            return "error"
-        oop=[]
-        for sdp in sdl:
-            oop.append(sdp.ddog())
-        return {"n":nnu,"p":page,"data":oop}
     def post(self):
         args = parser.parse_args()
         c=args['y']
@@ -65,42 +52,24 @@ class lsdogs(Resource):
 class plsdogs(Resource):
     def get(self):
         try:
-            sdl=Tdog.query.order_by(Tdog.pubtime.desc()).filter(Tdog.ak!=None).limit(5)
+            sdl=Tdog.query.order_by(Tdog.pubtime.desc()).filter(Tdog.ak!=None).limit(4)
         except :
             return "error"
         oop=[]
         for sdp in sdl:
             oop.append(sdp.ddog())
-        return {"n":nnu,"p":page,"data":oop}
+        return {"data":oop}
     def post(self):
-        args = parser.parse_args()
-        c=args['y']
-        tokend =args["i"]
-        asp=Dog.query.filter(Dog.token==tokend).first()
-        if asp is None:
-            return {'r':'403','data':None}
         try:
-            page=int(c) if (c is not None) else 0
-            sdl=Tdog.query.order_by(Tdog.pubtime.desc()).filter(Tdog.ak!=None).limit(10).offset(page*10)
-            nnu=Tdog.query.count()
+            sdl=Tdog.query.order_by(Tdog.pubtime.desc()).filter(Tdog.ak!=None).limit(4)
         except :
             return "error"
         oop=[]
         for sdp in sdl:
             oop.append(sdp.ddog())
-        return {"n":nnu,"p":page,"data":oop}
+        return {"data":oop}
 
 class addogs(Resource):
-    def get(self):
-        c = request.args.get("c")
-        # t = request.args.get("t")
-        dogid=gen_dog_id()
-        new_dog=Tdog(id=dogid,stime=datetime.now(),uid=1)
-        db_session.add(new_dog)
-        db_session.commit()
-        # addog(dogid,c)
-        executor.submit(addog,dogid,c)
-        return {'r':"ok",'id':dogid}
     def post(self):
         args = parser.parse_args()
         c = args["c"]
@@ -124,16 +93,6 @@ class addogs(Resource):
                 return {'r':"ok",'id':dogid}
 
 class logindog(Resource):
-    def get(self):
-        dusername = request.args.get("c")
-        passwd = request.args.get("p")
-        pd5=get_md5('{}^_^{}>_<'.format(dusername,passwd))
-
-        asp=Dog.query.filter(Dog.password==pd5).filter(Dog.username==dusername).first()
-        if asp is None:
-            return {'r':'bad','i':None}
-        else:
-            return {'r':'s','i':asp.token}
     def post(self):
         args = parser.parse_args()
         dusername = args["c"]
@@ -160,13 +119,6 @@ class rmdog(Resource):
             return {'r':'s','id':c}
 
 class doginfos(Resource):
-    def get(self):
-        tokend = request.args.get("i")
-        asp=Dog.query.filter(Dog.token==tokend).first()
-        if asp is None:
-            return {'r':'403','data':None}
-        else:
-            return {'r':'s','data':asp.ddog()}
     def post(self):
         args = parser.parse_args()
         tokend =args["i"]
@@ -178,6 +130,7 @@ class doginfos(Resource):
 
 api.add_resource(addogs, '/api/create/')
 api.add_resource(lsdogs, '/api/list/')
+api.add_resource(plsdogs, '/api/plist/')
 api.add_resource(logindog, '/api/login/')
 api.add_resource(rmdog, '/api/remove/')
 api.add_resource(doginfos, '/api/user/')

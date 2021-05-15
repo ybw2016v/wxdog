@@ -42,6 +42,7 @@ function initdog() {
       console.log(data)
       if (data.r == 's') {
         let logina = document.getElementById('appid');
+        logina.classList.remove("logdog");
 
         logina.innerHTML = `
         <div class="card" id="iidog2">
@@ -105,6 +106,8 @@ function uploaddog() {
 function doglist(page = 0) {
   var idog = localStorage.getItem('i');
   var ddlist = document.getElementById('ddlist');
+  var btdog = document.getElementById('bttdog');
+  btdog.style.display="block";
   console.log(ddlist)
   $.post('/api/list/', { i: idog, y: page }, function (data, status) {
     // console.log(data)
@@ -188,8 +191,8 @@ var Page = 0;
 function st() {
   var Locat = localStorage.getItem('location');
   if (Locat === null) {
-    Locat = 'main';  
-    localStorage.setItem('location','main')
+    Locat = 'admin';  
+    localStorage.setItem('location','admin')
   }
   if (Locat==='main') {
     const mainpart = document.getElementById('main')
