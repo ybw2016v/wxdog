@@ -40,7 +40,7 @@ class lsdogs(Resource):
             return {'r':'403','data':None}
         try:
             page=int(c) if (c is not None) else 0
-            sdl=Tdog.query.order_by(Tdog.pubtime.desc()).filter(Tdog.ak!=None).limit(10).offset(page*10)
+            sdl=Tdog.query.order_by(Tdog.pubtime.desc()).filter(Tdog.url!=None).limit(10).offset(page*10)
             nnu=Tdog.query.count()
         except :
             return "error"

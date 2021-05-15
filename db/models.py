@@ -25,9 +25,9 @@ class Tdog(Base):
         return '<User %r>' % (self.text)
     
     def ddog(self):
-        return {"id":str(self.id),"ctext":self.ctext,"ptext":self.ptext,"title":self.title,'url':self.url,'pubtime':self.pubtime+'000',"author":self.author,"desp":self.desp,'uid':self.uid,'ak':self.ak,'stime': self.stime.astimezone().isoformat(timespec='milliseconds')  if (self.stime is not  None) else None}
+        return {"id":str(self.id),"ctext":self.ctext ,"ptext":self.ptext,"title":self.title,'url':self.url,'pubtime':(self.pubtime +'000') if (self.pubtime is not  None) else '0',"author":self.author,"desp":self.desp,'uid':self.uid,'ak':self.ak,'stime': self.stime.astimezone().isoformat(timespec='milliseconds')  if (self.stime is not  None) else None}
     def pddog(self):
-        return {"id":str(self.id),"title":self.title,'url':self.url,'pubtime':self.pubtime+'000',"author":self.author,"desp":self.desp,'uid':self.uid,'ak':self.ak,'stime': self.stime.astimezone().isoformat(timespec='milliseconds')  if (self.stime is not  None) else None}
+        return {"id":str(self.id),"title":self.title,'url':self.url,'pubtime':(self.pubtime +'000') if (self.pubtime is not  None) else '0',"author":self.author,"desp":self.desp,'uid':self.uid,'ak':self.ak,'stime': self.stime.astimezone().isoformat(timespec='milliseconds')  if (self.stime is not  None) else None}
 
 class Dog(Base):
     __tablename__ = 'dogs'
