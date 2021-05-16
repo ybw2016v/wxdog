@@ -13,8 +13,10 @@
 <title><![CDATA[{{ item['title'] |safe  }}]]></title>
 <cover>https://my-statics-cdn.app.xinhuanet.com/uploadfile/xinhuahao/12bfb789-2f5e-481b-9afc-bf9c97d311e8.jpg</cover>
 <introduction><![CDATA[{{ item['desp'] |safe  }}]]></introduction>
-<link>{{ item['link'] }}</link>
-<description><![CDATA[{{ item['ptext'] |safe  }}]]></description>
+<link>{{ item['url'] }}</link>
+<description>
+<![CDATA[{{ item['ptext'] |safe  }}]]>
+</description>
 <pubDate>{{ item['pubtime'] }}</pubDate>
 <source><![CDATA[{{ item['author'] }}]]></source>
 <action>withdraw</action>
