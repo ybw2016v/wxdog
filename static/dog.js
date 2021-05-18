@@ -126,13 +126,14 @@ function doglist(page = 0) {
       const element = data.data[idog];
       const dutime = new Date(Number(element.pubtime))
       const sctime =  new Date(element.stime)
+      LIST[element.id]=element;
       dht = `<div class="card">
       <div class="card-body" id="${Page}-${idog + 1}">
 
           <div class="contain cont" id='${element.id}'>
           <h5><a href="${element.url}">${element.title}</a></h5>
           <p>${element.desp}</p>
-          <p><button type="button" class="btn btn-danger btn-sm"" onclick="rmddog(this)">删除</button></p>
+          <p><button type="button" class="btn btn-danger btn-sm btdogs" onclick="rmddog(this)">删除</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog(this)">复制内容</button></p>
               
           </div>
       </div>
@@ -190,9 +191,70 @@ function lastpage() {
   doglist(Page-1);
 }
 
+function copydog(content) {
+  var ctr = document.body.createControlRange();
 
+  area.contentEditable = true;
+
+  ctr.addElement(area);
+
+  ctr.execCommand('Copy');
+
+  // area.contentEditable = false;
+  // var aux = document.createElement("input"); 
+  //   aux.setAttribute("value", content); 
+  //   document.body.appendChild(aux); 
+  //   aux.select();
+  //   document.execCommand("copy"); 
+    document.body.removeChild(aux);
+    alert("复制成功");
+    // if (message == null) {
+    //     alert("复制成功");
+    // } else{
+    //     alert(message);
+    // }
+}
+
+function cpdog(afttdog) {
+  Cpdog = afttdog.parentElement.parentElement;
+  console.log(Cpdog.id);
+  DogZore.innerHTML=LIST[Cpdog.id].ptext;
+  sldog = document.getElementById("dogcp");
+  sldog.innerHTML=LIST[Cpdog.id].ptext;
+  selectElementContents(sldog);
+  sldog.innerHTML='';
+  // copydog(`<html>${LIST[Cpdog.id].ptext}</html>`);
+}
+
+function selectElementContents(el) {
+
+  // var body = document.body, range, sel;
+
+  if (document.createRange && window.getSelection) {
+
+      range = document.createRange();
+
+      sel = window.getSelection();
+
+      sel.removeAllRanges();
+
+      // try {
+          range.selectNodeContents(el)
+          sel.addRange(range);
+      // } catch (e) {
+      //     range.selectNode(el);
+      //     sel.addRange(range);
+      // }
+      document.execCommand("copy");
+      window.getSelection().empty();
+      alert("成功复制到剪贴板");
+    }
+
+  }
 var Num = 0;
 var Page = 0;
+var LIST = {};
+var DogZore = document.createElement("div");
 
 
 
