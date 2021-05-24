@@ -231,7 +231,7 @@ function cpdog2(afttdog) {
   console.log(Cpdog.id);
   DogZore.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>");
   sldog = document.getElementById("dogcp");
-  sldog.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>");
+  sldog.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>").replace("</span>","").replace("<span>","");
   selectElementContents(sldog);
   sldog.innerHTML='';
   // copydog(`<html>${LIST[Cpdog.id].ptext}</html>`);
