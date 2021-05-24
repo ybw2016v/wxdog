@@ -133,7 +133,7 @@ function doglist(page = 0) {
           <div class="contain cont" id='${element.id}'>
           <h5><a href="${element.url}">${element.title}</a></h5>
           <p>${element.desp}</p>
-          <p><button type="button" class="btn btn-danger btn-sm btdogs" onclick="rmddog(this)">删除</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog(this)">复制内容</button></p>
+          <p><button type="button" class="btn btn-danger btn-sm btdogs" onclick="rmddog(this)">删除</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog(this)">复制内容</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog2(this)">复制内容(fjq测试用)</button></p>
               
           </div>
       </div>
@@ -221,6 +221,17 @@ function cpdog(afttdog) {
   DogZore.innerHTML=LIST[Cpdog.id].ptext;
   sldog = document.getElementById("dogcp");
   sldog.innerHTML=LIST[Cpdog.id].ptext;
+  selectElementContents(sldog);
+  sldog.innerHTML='';
+  // copydog(`<html>${LIST[Cpdog.id].ptext}</html>`);
+}
+
+function cpdog2(afttdog) {
+  Cpdog = afttdog.parentElement.parentElement;
+  console.log(Cpdog.id);
+  DogZore.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>");
+  sldog = document.getElementById("dogcp");
+  sldog.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>");
   selectElementContents(sldog);
   sldog.innerHTML='';
   // copydog(`<html>${LIST[Cpdog.id].ptext}</html>`);
