@@ -133,7 +133,7 @@ function doglist(page = 0) {
           <div class="contain cont" id='${element.id}'>
           <h5><a href="${element.url}">${element.title}</a></h5>
           <p>${element.desp}</p>
-          <p><button type="button" class="btn btn-danger btn-sm btdogs" onclick="rmddog(this)">删除</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog(this)">复制内容</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog2(this)">复制内容(fjq测试用)</button></p>
+          <p><button type="button" class="btn btn-danger btn-sm btdogs" onclick="rmddog(this)">删除</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog(this)">复制内容</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog2(this)">复制内容(fjq测试用)</button><button type="button" class="btn btn-primary btn-sm btdogs" onclick="cpdog3(this)">复制内容(新华号图片测试用)</button></p>
               
           </div>
       </div>
@@ -231,11 +231,25 @@ function cpdog2(afttdog) {
   console.log(Cpdog.id);
   DogZore.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>");
   sldog = document.getElementById("dogcp");
-  sldog.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>").replace("</span>","").replace("<span>","").replace("</p><p>","<br>");
+  sldog.innerHTML='<p>'+LIST[Cpdog.id].ptext.replace(/<\/span>/g,"").replace(/<span>/g,"").replace(/<\/strong>/g,"").replace(/<strong>/g,"").replace(/<\/p>/g,"<br>").replace(/<p>/g,"<br>").replace(/(<br>)+/g,"<br>")+'</p>';
   selectElementContents(sldog);
-  sldog.innerHTML='';
+  console.log(sldog.innerHTML);
+  //sldog.innerHTML='';
   // copydog(`<html>${LIST[Cpdog.id].ptext}</html>`);
 }
+
+function cpdog3(afttdog) {
+  Cpdog = afttdog.parentElement.parentElement;
+  console.log(Cpdog.id);
+  DogZore.innerHTML=LIST[Cpdog.id].ptext.replace("</strong>","</b>").replace("<strong>","<b>");
+  sldog = document.getElementById("dogcp");
+  sldog.innerHTML=LIST[Cpdog.id].ptext.replace(/https:\/\/mmbiz.qpic.cn/g,"https://wxproxy.dogcraft.top");
+  selectElementContents(sldog);
+  console.log(sldog.innerHTML);
+  //sldog.innerHTML='';
+  // copydog(`<html>${LIST[Cpdog.id].ptext}</html>`);
+}
+
 
 function selectElementContents(el) {
 
