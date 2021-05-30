@@ -284,24 +284,25 @@ var DogZore = document.createElement("div");
 
 
 function st() {
-  var Locat = localStorage.getItem('location');
-  if (Locat === null) {
-    Locat = 'admin';  
-    localStorage.setItem('location','admin')
-  }
-  if (Locat==='main') {
-    const mainpart = document.getElementById('main')
-    const admipart = document.getElementById('admin')
-    admipart.style.display = 'none';
-    mainpart.style.display = 'block';
-    maininit();
-  } else {
-    const mainpart = document.getElementById('main')
-    const admipart = document.getElementById('admin')
-    admipart.style.display = 'block';
-    mainpart.style.display = 'none';
-    admininit();
-  }
+  // var Locat = localStorage.getItem('location');
+  // if (Locat === null) {
+  //   Locat = 'admin';  
+  //   localStorage.setItem('location','admin')
+  // }
+  // if (Locat==='main') {
+  //   const mainpart = document.getElementById('main')
+  //   const admipart = document.getElementById('admin')
+  //   admipart.style.display = 'none';
+  //   mainpart.style.display = 'block';
+  //   maininit();
+  // } else {
+  //   const mainpart = document.getElementById('main')
+  //   const admipart = document.getElementById('admin')
+  //   admipart.style.display = 'block';
+  //   mainpart.style.display = 'none';
+  //   admininit();
+  // }
+  admininit();
 }
 
 function ctmain() {
